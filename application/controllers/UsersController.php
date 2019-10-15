@@ -32,6 +32,16 @@ class Users extends CI_Controller {
 
     // user getting func
     function getuser ($userid = null) {
+        // prepare role list for selector
+        $userRolesList = $this->usersmodel->GetUserRole();
+
+        if ($userRolesList['result']) {
+            $this->pageContent['userroles'] = $userRolesList['result'];
+        }
+        else {
+            $this->pageContent['msg'] = $userRolesList['msg'];
+        }
+
         if ($userid) {
             $userItem = $this->usersmodel->GetUser($userid);
 
@@ -41,16 +51,6 @@ class Users extends CI_Controller {
             }
             else {
                 $this->pageContent['msg'] = $userItem['msg'];
-            }
-
-
-            $userRolesList = $this->usersmodel->GetUserRole();
-
-            if ($userRolesList['result']) {
-                $this->pageContent['userroles'] = $userRolesList['result'];
-            }
-            else {
-                $this->pageContent['msg'] = $userRolesList['msg'];
             }
 
             $this->showcontent('userform', $this->pageContent);
@@ -67,6 +67,7 @@ class Users extends CI_Controller {
 
             $this->showcontent('usertable', $this->pageContent);
         }
+
     }
 
     // user deleting func

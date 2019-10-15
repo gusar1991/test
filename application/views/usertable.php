@@ -15,8 +15,12 @@
 <body>
     <? if (!empty($msg)): ?>
         <p><?php echo $msg ?></p>
-    <? endif; ?>
 
+    <? else: ?>
+    <div class="col-md-10 col-md-offset-1">
+        <div class="block-header">
+            <h2>Users list</h2>
+        </div>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -44,5 +48,9 @@
                 </td>
             </tr>
         <?php endforeach; ?>
+        </tbody>
+    </table>
+    </div>
+    <? endif; ?>
 </body>
 </html>

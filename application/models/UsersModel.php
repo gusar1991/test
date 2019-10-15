@@ -52,6 +52,7 @@ class UsersModel extends CI_Model {
             }
             else {
                 $answer['msg'] = 'can not get user';
+                return $answer;
             }
         }
         else {
@@ -67,6 +68,7 @@ class UsersModel extends CI_Model {
             }
             else {
                 $answer['msg'] = 'can not get user list';
+                return $answer;
             }
         }
         return $answer;
@@ -117,6 +119,7 @@ class UsersModel extends CI_Model {
             }
             else {
                 $answer['msg'] = 'can not get role';
+                return $answer;
             }
         }
         else {
@@ -129,6 +132,7 @@ class UsersModel extends CI_Model {
             }
             else {
                 $answer['msg'] = 'can not get role list';
+                return $answer;
             }
         }
         return $answer;

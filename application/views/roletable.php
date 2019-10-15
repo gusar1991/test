@@ -16,33 +16,41 @@
     <body>
     <? if (!empty($msg)): ?>
         <p><?php echo $msg ?></p>
+
+    <? else: ?>
+    <div class="col-md-10 col-md-offset-1">
+        <div class="block-header">
+            <h2>Roles list</h2>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">
+                    <button class="btn btn-success btn-sm" title="edit">
+                        <a href="/users/getuserrole">add new</a>
+                    </button>
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <?php foreach ($rolelist as $role): ?>
+            <tr>
+                <td><?php echo $role['rolename']?></td>
+                <td>
+                    <button class="btn btn-warning btn-sm" title="delete">
+                        <a href="/users/deluserrole/<?php echo $role['id']?>"></a><i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="btn btn-warning btn-sm" title="edit">
+                        <a href="/users/getuserrole/<?php echo $role['id']?>"></a><i class="fas fa-user-edit"></i>
+                    </button>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
     <? endif; ?>
-
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">
-                <button class="btn btn-success btn-sm" title="edit">
-                    <a href="/users/getuserrole">add new</a>
-                </button>
-            </th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <?php foreach ($rolelist as $role): ?>
-        <tr>
-            <td><?php echo $role['rolename']?></td>
-            <td>
-                <button class="btn btn-warning btn-sm" title="delete">
-                    <a href="/users/deluserrole/<?php echo $role['id']?>"></a><i class="fas fa-trash-alt"></i>
-                </button>
-                <button class="btn btn-warning btn-sm" title="edit">
-                    <a href="/users/getuserrole/<?php echo $role['id']?>"></a><i class="fas fa-user-edit"></i>
-                </button>
-            </td>
-        </tr>
-        <?php endforeach; ?>
     </body>
 </html>
