@@ -13,44 +13,45 @@
     <title>Users list</title>
 </head>
 <body>
-    <? if (!empty($msg)): ?>
-        <p><?php echo $msg ?></p>
+<? if (!empty($msg)): ?>
+    <p><?php echo $msg ?></p>
 
-    <? else: ?>
+<? else: ?>
     <div class="col-md-10 col-md-offset-1">
         <div class="block-header">
             <h2>Users list</h2>
         </div>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Role</th>
-            <th scope="col">
-                <button class="btn btn-success btn-sm" title="edit">
-                    <a href="/users/getuser">add new</a>
-                </button>
-            </th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <?php foreach ($userlist as $user): ?>
+        <table class="table table-striped">
+            <thead>
             <tr>
-                <td><?php echo $user['username']?></td>
-                <td>
-                    <button class="btn btn-warning pull-right btn-sm" title="delete">
-                        <a href="/users/deluseruser/<?php echo $user['id']?>"></a><i class="fas fa-trash-alt"></i>
+                <th scope="col">Name</th>
+                <th scope="col">Role</th>
+                <th scope="col">
+                    <button class="btn btn-success btn-sm" title="edit">
+                        <a href="/users/getuser">add new</a>
                     </button>
-                    <button class="btn btn-warning pull-right btn-sm" title="edit">
-                        <a href="/users/getuseruser/<?php echo $user['id']?>"></a><i class="fas fa-user-edit"></i>
-                    </button>
-                </td>
+                </th>
             </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+
+            <tbody>
+            <?php foreach ($userslist as $user): ?>
+                <tr>
+                    <td><?php echo $user->username?></td>
+                    <td><?php echo $user->rolename?></td>
+                    <td>
+                        <button class="btn btn-warning pull-right btn-sm" title="delete">
+                            <a href="/users/deluseruser/<?php echo $user->id?>"></a><i class="fas fa-trash-alt"></i>
+                        </button>
+                        <button class="btn btn-warning pull-right btn-sm" title="edit">
+                            <a href="/users/getuseruser/<?php echo $user->id?>"></a><i class="fas fa-user-edit"></i>
+                        </button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
-    <? endif; ?>
+<? endif; ?>
 </body>
 </html>

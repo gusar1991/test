@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * @property CI_Loader load
  * @property CI_Input input
@@ -11,31 +12,19 @@ class Users extends CI_Controller {
         'msg' => ''
     );
 
-    function index() {
+    public function __construct() {
+        parent::__construct();
+
+        $this->load->model("UsersModel", "usersmodel");
+    }
+
+    public function index()
+    {
         $this->getuser();
     }
 
-    // user saving func
-    function setuser () {
-        $post = $this->input->post();
-
-        if (isset($post['username']) && $post['username']!='')
-            $data['username'] = $post['username'];
-        if (isset($post['role_id']) && $post['role_id']!='')
-            $data['role_id'] = $post['role_id'];
-
-        if ($post['userid']) {
-            $userResult = $this->usersmodel->SetUser($post['userid'], $data);
-        }
-        else {
-            $userResult = $this->usersmodel->SetUser($data);
-        }
-
-        redirect('users/getuser/'.$userResult, 'refresh');
-    }
-
     // user getting func
-    function getuser ($userid = null) {
+    public function getuser ($userid = null) {
         // prepare role list for selector
         $userRolesList = $this->usersmodel->GetUserRole();
 
@@ -57,7 +46,7 @@ class Users extends CI_Controller {
                 $this->pageContent['msg'] = $userItem['msg'];
             }
 
-            $this->showcontent('userform', $this->pageContent);
+            $this->load->view('userform', $this->pageContent);
         }
         else {
             $usersList = $this->usersmodel->GetUser();
@@ -69,7 +58,7 @@ class Users extends CI_Controller {
                 $this->pageContent['msg'] = $usersList['msg'];
             }
 
-            $this->showcontent('usertable', $this->pageContent);
+            $this->load->view('usertable', $this->pageContent);
         }
 
     }
@@ -110,7 +99,7 @@ class Users extends CI_Controller {
                 $this->pageContent['msg'] = $roleItem['msg'];
             }
 
-            $this->showcontent('roleform', $this->pageContent);
+            $this->load->view('roleform', $this->pageContent);
         }
         else {
             $roleList = $this->usersmodel->GetUserRole();
@@ -122,7 +111,7 @@ class Users extends CI_Controller {
                 $this->pageContent['msg'] = $roleList['msg'];
             }
 
-            $this->showcontent('roletable', $this->pageContent);
+            $this->load->view('roletable', $this->pageContent);
         }
     }
 
