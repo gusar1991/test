@@ -11,6 +11,10 @@ class Users extends CI_Controller {
         'msg' => ''
     );
 
+    function index() {
+        $this->getuser();
+    }
+
     // user saving func
     function setuser () {
         $post = $this->input->post();
