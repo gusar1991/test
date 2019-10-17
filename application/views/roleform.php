@@ -16,7 +16,7 @@
     <p><?php echo $msg ?></p>
 
 <?php else: ?>
-    <form method="post" action="<?php echo base_url('/roles/setrolerole/' . isset($roleid) ? $roleid :'') ?>" accept-charset="utf-8">
+    <form method="post" action="<?php echo ('/users/setuserrole/' . (isset($roleid) ? $roleid :'')) ?>" accept-charset="utf-8">
 
         <div class="col-md-10 col-md-offset-1">
             <div class="block-header">

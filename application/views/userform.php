@@ -17,7 +17,7 @@
     <p><?php echo $msg ?></p>
 
 <?php else: ?>
-<form method="post" action="<?php echo base_url('/users/setuser/' . isset($userid) ? $userid :'') ?>" accept-charset="utf-8">
+<form method="post" action="<?php echo ('/users/setuser/' . (isset($userid) ? $userid :'')) ?>" accept-charset="utf-8">
 
     <div class="col-md-10 col-md-offset-1">
         <div class="block-header">
@@ -29,13 +29,13 @@
                 <input type="text" name="username" class="form-control" value="<?php echo isset($userdata->username) ? $userdata->username :'' ?>" id="username" required/>
             </div>
             <div class="form-group">
-                <label for="role_id" class="control-label">Подразделение</label>
+                <label for="role_id" class="control-label">User role</label>
                 <select name="role_id" id="role_id" class="form-control" size="1" required>
                     <option value="">Choose user role (required)</option>
                     <?php foreach ($userroles as $roleItem): ?>
-                        <option value="<?php echo $roleItem->id ?>"
-                            <?php echo (isset($userdata->role_id) && $userdata->role_id == $roleItem->id) ? 'selected' : ''?>>
-                            <?= $roleItem->title ?>
+                        <option value="<?php echo $roleItem->role_id ?>"
+                            <?php echo (isset($userdata->role_id) && $userdata->role_id == $roleItem->role_id) ? 'selected' : ''?>>
+                            <?php echo $roleItem->rolename ?>
                         </option>
                     <?php endforeach; ?>
                 </select>

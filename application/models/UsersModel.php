@@ -17,7 +17,7 @@ class UsersModel extends CI_Model {
         if ($userId) {
             // update user
             $this->db
-                ->where('id', $userId)
+                ->where('user_id', $userId)
                 ->update('users', $data);
             // here must be notification email function
         }
@@ -41,9 +41,9 @@ class UsersModel extends CI_Model {
         if ($userId) {
             // one user
             $userResult = $this->db
-                ->select('users.*, user_role.*')
-                ->join('user_role', 'role_id = user_role.id', 'left')
-                ->where('id', $userId)
+                ->select('users.*, user_role.rolename')
+                ->join('user_role', 'users.role_id = user_role.role_id', 'left')
+                ->where('user_id', $userId)
                 ->get('users');
 
             if ($userResult->num_rows() > 0) {
@@ -59,7 +59,7 @@ class UsersModel extends CI_Model {
             // list
             $userResult = $this->db
                 ->select('users.*, user_role.*')
-                ->join('user_role', 'role_id = user_role.id', 'left')
+                ->join('user_role', 'users.role_id = user_role.role_id', 'left')
                 ->get('users');
 
             if ($userResult->num_rows() > 0) {
@@ -77,7 +77,7 @@ class UsersModel extends CI_Model {
     // user delete func
     function DelUser ($userId = null) {
         // honestly, I think better change user status and check his data on setting new user, for better HR's experience
-        $this->db->where('id', $userId)->delete('users');
+        $this->db->where('user_id', $userId)->delete('users');
     }
 
     // user role setter func
@@ -87,7 +87,7 @@ class UsersModel extends CI_Model {
         if ($userRoleId) {
             // update user role
             $this->db
-                ->where('id', $userRoleId)
+                ->where('role_id', $userRoleId)
                 ->update('user_role', $data);
             // here must be notification email function
         }
@@ -110,7 +110,7 @@ class UsersModel extends CI_Model {
 
         if ($userRoleId) {
             $roleResult = $this->db
-                ->where('id', $userRoleId)
+                ->where('role_id', $userRoleId)
                 ->get('user_role');
 
             if ($roleResult->num_rows() > 0) {
@@ -140,6 +140,6 @@ class UsersModel extends CI_Model {
 
     // user delete func
     function DelUserRole ($userRoleId = null) {
-        $this->db->where('id', $userRoleId)->delete('users');
+        $this->db->where('role_id', $userRoleId)->delete('user_role');
     }
 }
